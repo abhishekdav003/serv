@@ -1,16 +1,23 @@
 const express = require("express")
 const console = require("node:console")
 const app = express()
-const productRouter = require("./routes/products")
 const port = 4000
-app.use(express.json())
+const userRoute = require("./routes/userRoutes")
+const productRoute = require("./routes/productRoutes")
+const cartRoute = require("./routes/cartRoutes")
 
-app.use("/products",productRouter)
+app.use("/users", userRoute)
+app.use("/products", productRoute)
+app.use("/cart",cartRoute)
 
 app.get("/", (req, res) => {
-  res.send("server is running")
+  res.send("Server is running")
+})
+
+app.use((req, res) => {
+  res.status(404).json("Invalid URL")
 })
 
 app.listen(port, () => {
-  console.log("Server for ecommerce platform is running on port:",port)
+  console.log("Server is running  on port:",port)
 })
