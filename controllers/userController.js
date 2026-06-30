@@ -1,18 +1,19 @@
+const { successResponse } = require("../utils/responseHandler");
+
 const getAllUsers = (req, res) => {
-  res.send("Fetching all users")
-}
+  return successResponse(res, 200, "Fetching all users");
+};
 
 const addUser = (req, res) => {
-  res.send("Adding a new user");
-}
+  return successResponse(res, 201, "Adding a new user");
+};
 
 const getUserById = (req, res) => {
-  const userId = req.params.id
-  res.send(`Fetching user with ID: ${userId}`);
-}
+  return successResponse(res, 200, `Fetching user with ID: ${req.params.id}`);
+};
 
 module.exports = {
   getAllUsers,
   addUser,
-  getUserById
-}
+  getUserById,
+};
